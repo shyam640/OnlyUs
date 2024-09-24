@@ -23,7 +23,7 @@ module.exports = function (io) {
       return socket.disconnect(1);
     } else {
       try {
-        await SocketDuplicateRecord.create({ ip });
+        await SocketDuplicateRecord.create({ ip }); // Remove the callback
       } catch (err) {
         socket.emit("socket_disconnect_error");
         return socket.disconnect(1);
@@ -123,7 +123,7 @@ module.exports = function (io) {
         socket.requestInfo.datetime = now;
         socket.requestInfo.requests = 1;
       } // If 100 requests in last 5 minutes ban ip (1h)
-      else if (socket.requestInfo.requests > 999) {
+      else if (socket.requestInfo.requests > 99) {
         socket.emit("socket_connection_ban");
 
         await SocketBanRecord.create({ ip });

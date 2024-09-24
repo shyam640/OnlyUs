@@ -4,16 +4,14 @@ const MongoStore = require('rate-limit-mongo');
 module.exports = (timeframeInMinutes, rateLimit) => rateLimiter({
     store: new MongoStore({
         uri: process.env.MONGO_URI,
-        user: process.env.MONGO_USER || "",
-        password: process.env.MONGO_USER_PASSWORD || "",
-        expireTimeMs: timeframeInMinutes * 10 * 1000,
+        expireTimeMs: timeframeInMinutes * 1000,
         errorHandler: (e) => {
             console.error(e);
     
             process.exit(0)
         }
     }),
-    windowMs: timeframeInMinutes * 10 * 1000,
+    windowMs: timeframeInMinutes * 1000,
     max: rateLimit,
     message: `You made too many requests. Please try again in ${timeframeInMinutes} minutes.`
 });

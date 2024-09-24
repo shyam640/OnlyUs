@@ -2,9 +2,6 @@
 const DOMAIN = document.getElementById('DOMAIN').innerText
 const ROOM_ID = document.getElementById('ROOM_ID').innerText
 
-// Credits
-const removeCreditBtn = document.getElementById('credits__close')
-
 // Add Video
 const ytLinkInp = document.getElementById('search__input')
 const ytSearchBtn = document.getElementById('search__button')
@@ -339,15 +336,6 @@ socket.on('user-disconnect', (profileId) => {
     userLength--;
     checkRoomLinkAvailability()
     removeUser(profileId)
-})
-
-// Remove Credit
-removeCreditBtn.addEventListener('click', () => {
-    setTimeout(() => {
-        removeCreditBtn.parentElement.hidden = true;
-    }, 950)
-
-    removeCreditBtn.parentElement.classList.add('credits__close-animation')
 })
 
 // Helper Function
